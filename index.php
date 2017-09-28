@@ -1,52 +1,58 @@
 <?php
     require_once('database.php');
 
-    // Get customers
-    $query = "SELECT firstName, lastName FROM customers order by lastName;";
-    //result set
-    $customers = $db->query($query);
+    // Get orders
+    $customerID = 1;
+
+    $query = "SELECT orderID, orderDate FROM orders WHERE $customerID =1";
+    $stmt = $db ->prepare($query);
+    $stmt ->execute();
+    $stmt ->store_result();
+    
+    $stmt ->bind_result($orderID, $orderDate);
+    
 ?>
-<!DOCTYPE html>
-<html>
 
-<!-- the head section -->
-<head>
-    <title>My Guitar Shop</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-</head>
+    <!-- header information comes from include file -->
+    <head>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+    </head>
 
-<!-- the body section -->
 <body>
     <div id="page">
-
-    <div id="header">
-        <h1>Product Manager</h1>
-    </div>
-
-    <div id="main">
-
-        <h1>Product List</h1>
-
-        <div id="content">
-            <table>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                </tr>
-                <?php foreach ($customers as $customer) : ?>
-                <tr>
-                    <td><?php echo $customer['firstName']; ?></td>
-                    <td><?php echo $customer['lastName']; ?></td>
-                </tr>
-                <?php endforeach; ?>
-            </table>
+        
+        <div id="header">
+            <h1>Orders</h1>
         </div>
+    
+        <div id="main">
+            
+            <h1> Orders </h1>
+            
+            <div id="content">
+                <table align ="center">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Order Date</th>
+                    </tr>
+                    <?php while ($stmt ->fetch()) { ?>
+                    <tr>
+                        <td><?php echo $orderID; ?></td>
+                        <td><?php echo $orderDate; ?></td>
+                    </tr>
+                    <!-- result set is available -->
+                    
+                    <?php }
+                    
+        $stmt ->free_result();
+        $db ->close();?>
+                </table>
+                <br>
+            </div>
+            <div id="footer">
+                <p>&copy; <?php echo date("Y"); ?> Columbus State University </p> 
+            </div>
+        </div>
+    
     </div>
-
-    <div id="footer">
-        <p>&copy; <?php echo date("Y"); ?> My Guitar Shop, Inc.</p>
-    </div>
-
-    </div><!-- end page -->
 </body>
-</html>
