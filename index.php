@@ -13,21 +13,20 @@
     
 ?>
 
+    <!-- header information comes from include file -->
 <head>
-    <title> Orders </title>
     <link rel="stylesheet" type="text/css" href="lab7.css" />
-</head>
-
+</head>    
+    
 <body>
     <div id ="page">
-        
         <div id="header">
             <h1>Orders</h1>
         </div>
         
         <div id="main">
             
-            <h1>Order List</h1>
+            <h1>Orders</h1>
             
             <div id="content">
                 <!-- display a list of orders -->
@@ -52,9 +51,8 @@
                 <br>
             </div>
         </div>
-        
         <div id="footer">
-            <p>&copy; <?php echo date("Y"); ?> Columbus State University</p>
+            <p>&copy; <?php echo date ("Y"); ?> Columbus State University</p>
         </div>
-    </div>    
-</body>        
+    </div>
+</body>    
