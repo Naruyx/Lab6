@@ -14,8 +14,8 @@
 ?>
 
 <head>
-    <title> My Guitar Shop </title>
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <title> Orders </title>
+    <link rel="stylesheet" type="text/css" href="lab7.css" />
 </head>
 
 <body>
